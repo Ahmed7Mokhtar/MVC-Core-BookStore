@@ -1,0 +1,43 @@
+﻿@using BookStore.Models
+
+@model EmailConfirmModel
+
+
+@{
+    ViewData["Title"] = "ConfirmEmail";
+}
+
+
+<div class="container">
+    <div class="row text-center">
+        <div class="col-md-4">
+        </div>
+        <div class="col-md-4">
+            @if (Model.EmailVerified == true)
+            {
+                <div class="alert alert-success" role="alert">
+                    <p>Your Email has been veridied successfully.</p>
+                </div>
+            }
+            else {
+                @if(Model.EmailSent)
+                {
+                    <p>Email sent to your registered email id</p>
+                }
+                else {
+                    <p>We have sent an email on your email id. Click on the link to login</p>
+                }
+
+                <form asp-action="ConfirmEmail">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="Email" />
+
+                    <p>Didn't get any email or deleted by mistake?</p>
+                    <div class="form-group">
+                        <input type="submit" value="resend confirmation email" class="btn btn-primary" />
+                    </div>
+                </form>
+            }
+        </div>
+    </div>
+</div>

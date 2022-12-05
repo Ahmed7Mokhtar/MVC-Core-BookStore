@@ -1,0 +1,14 @@
+﻿
+@model IEnumerable<BookModel>
+
+<div class="row">
+
+    @foreach (var book in Model)
+    {
+        <div class="col-md-4">
+            @*@await Html.PartialAsync("_bookThumbnail", new BookModel())*@
+            @*partial tag helper*@
+            <partial name="_bookThumbnail" model="book" />
+        </div>
+    }
+</div>
